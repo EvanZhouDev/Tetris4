@@ -782,8 +782,11 @@ window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Make sure to rerender to "reset"
-    render();
+    // If the game is running
+    if (settings.gameRunning) {
+        // Make sure to rerender to "reset"
+        render();
+    }
 });
 
 // If the ghost switch (used to turn the Tetris ghost on and off) is changed
