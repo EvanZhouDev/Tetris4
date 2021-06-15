@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Tetris 4.2</title>
+        <meta name="description" content="My 4th try at making a Tetris game" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Import stylesheet -->
+        <link rel="stylesheet" href="style.css" />
+
+        <!-- Import fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div id="mainMenu">
+            <div class="main-logo">
+                <h1 class="main-text">Tetris</h1>
+                <img class="main-image" src="Source/Images/4.png" />
+                <h1 class="sub-main-text">classic game, remade</h1>
+            </div>
+            <button
+                onclick="openGameSelector()"
+                class="main-button main-button1"
+            >
+                Play Tetris
+            </button>
+            <button onclick="openLeaderboard()" class="main-button main-button2">
+                Leaderboard
+            </button>
+            <button onclick="easterEgg(); location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ';" class="main-notice">
+                Tetris © 1985~2021 Tetris Holding. Tetris logos, Tetris theme
+                song and Tetriminos are trademarks of Tetris Holding. The Tetris
+                trade dress is owned by Tetris Holding. Licensed to The Tetris
+                Company. Tetris Game Design by Alexey Pajitnov. Tetris Logo
+                Design by Roger Dean. All Rights Reserved.
+            </button>
+        </div>
+
+        <!-- Create canvas for game above the main menu but under all of the modal popups -->
+        <canvas class="canvas" id="gameCanvas"></canvas>
+
+        <button onclick="elementStatus('settings', 'show')" class="main-menu-settings-button">
+            Settings
+        </button>
+
+        <!-- The Menu -->
+        <div id="menu" class="menu-bg">
+            <!-- Menu content -->
+            <div class="menu-content">
+                <img class="menu-tetris-logo" src="Source/Images/tetris.png" />
+                <button onclick="pause()" class="menu-button1 menu-button">
+                    Resume
+                </button>
+                <button
+                    onclick="init(); pause()"
+                    class="menu-button2 menu-button"
+                >
+                    Restart
+                </button>
+                <button onclick="quit(true)" class="menu-button3 round-button">
+                    Save & Quit
+                </button>
+                <button
+                    onclick="elementStatus('quitConfirmMenu', 'show')"
+                    class="menu-button4 round-button"
+                >
+                    Quit
+                </button>
+                <button
+                    onclick="elementStatus('settings', 'show')"
+                    class="menu-button5 round-button"
+                >
+                    Settings
+                </button>
+            </div>
+        </div>
+
+        <!-- Game over popup -->
+        <div id="gameOverMenu" class="menu-bg">
+            <!-- Menu content -->
+            <div class="menu-content">
+                <h1 class="menu-title menu-title-game-over">
+                    Game over. <br />
+                    <b>Great Job.</b> <br />
+                    Here is your score:
+                </h1>
+                <h1
+                    id="gameOverMenuScore"
+                    class="menu-title menu-title-score"
+                ></h1>
+                <button onclick="openStats()" class="menu-button2 menu-button">
+                    Full Statistics & <b>Leaderboard</b>
+                </button>
+                <button
+                    onclick="init(); restart()"
+                    class="menu-button3 round-button"
+                >
+                    Play Again
+                </button>
+                <button onclick="quit()" class="menu-button4 round-button">
+                    Quit
+                </button>
+                <button
+                    onclick="elementStatus('settings', 'hide')"
+                    class="menu-button5 round-button"
+                >
+                    Settings
+                </button>
+            </div>
+        </div>
+
+        <!-- Selector before you start your game -->
+        <div id="gameSelector" class="menu-bg">
+            <!-- Menu content -->
+            <div class="menu-content">
+                <button onclick="openGameSelector()" class="menu-close">
+                    &times;
+                </button>
+                <br />
+                <br />
+                <br />
+                <br />
+                <h1 class="menu-title">Experience <b>Tetris 4:</b></h1>
+                <button onclick="newGame();" class="menu-button1 menu-button">
+                    New Game
+                </button>
+                <br />
+                <button
+                    onclick="restoreSavedGame()"
+                    class="menu-button2 menu-button"
+                    id="continueButton"
+                >
+                    Continue Last Game
+                </button>
+            </div>
+        </div>
+
+        <!-- "Are you sure you want to quit?" Popup -->
+        <div id="quitConfirmMenu" class="menu-bg">
+            <!-- Menu content -->
+            <div class="menu-content">
+                <br />
+                <br />
+                <br />
+                <h1 class="menu-title">
+                    Are you sure you want to quit <b>without saving?</b>
+                </h1>
+                <button onclick="quit()" class="menu-button1 menu-button">
+                    Yes, continue
+                </button>
+                <button onclick="quit(true)" class="menu-button2 menu-button">
+                    No, save
+                </button>
+            </div>
+        </div>
+
+        <!-- Settings -->
+        <div id="settings" class="menu-bg">
+            <!-- Setting content -->
+            <div class="menu-content">
+                <button onclick="elementStatus('settings', 'hide')" class="menu-close">
+                    &times;
+                </button>
+                <br />
+                <h1 class="menu-title">Settings</h1>
+                <br />
+                <br />
+                <br />
+                <div class="switch-group">
+                    <label class="switch switch1">
+                        <input id="ghost" type="checkbox" />
+                        <span class="slider"></span>
+                    </label>
+                    <h1 class="menu-button-label">Ghost</h1>
+                </div>
+                <br />
+                <div class="switch-group">
+                    <label class="switch switch3">
+                        <input id="music" type="checkbox" />
+                        <span class="slider"></span>
+                    </label>
+                    <h1 class="menu-button-label">Music</h1>
+                </div>
+            </div>
+        </div>
+
+        <div id="statViewer" class="menu-bg">
+            <div class="menu-content large-menu-content">
+                <div class="menu-content sub-menu-1">
+                    <h1 class="menu-header">Statistics:</h1>
+                    <h1 id="statViewerScore" class="menu-text fill-background">
+                        Score:
+                    </h1>
+                    <h1 id="statViewerTime" class="menu-text">Time Elapsed:</h1>
+                    <h1
+                        id="statViewerLinesCleared"
+                        class="menu-text fill-background"
+                    >
+                        Lines Cleared:
+                    </h1>
+                    <h1 id="statViewerLevel" class="menu-text">
+                        Level Reached:
+                    </h1>
+
+                    <h1 class="menu-text menu-text-small">
+                        We sure think your score is worthy of recording. See the
+                        right side for instructions to post your brilliant
+                        results to the <b>leaderboard</b>
+                    </h1>
+                </div>
+
+                <div class="menu-content sub-menu-2">
+                    <h1 class="menu-text">Publish to leaderboard:</h1>
+                    <h1 class="menu-text menu-text-small">Write your name, initial, nickname, anything!</h1>
+                    <input id="leaderboardName" class="menu-input" type="text" placeholder="Your name here..." maxlength="20"></input>
+                    <button onclick="logLeaderboard()" class="menu-button menu-button2">Send to Leaderboard</button>
+                    <button onclick="openLeaderboard()" class="menu-button menu-button4">View Leaderboard</button>
+                </div>
+
+                <button onclick="openStats()" class="menu-close">
+                    &times;
+                </button>
+            </div>
+        </div>
+
+        <!-- The leaderboard -->
+        <div id="leaderboard" class="menu-bg">
+            <!-- Menu content -->
+            <div class="menu-content large-menu-content">
+                <!-- Close button -->
+                <button onclick="elementStatus('leaderboard', 'hide')" class="menu-close">&times;</button>
+                <!-- Actual leaderboard, using a table -->
+                <table id="leaderboardTable" class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th colspan="5"><b>Leaderboard</b><br/>the future of scorekeeping is here</th>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>Score</td>
+                            <td>Time Elapsed</td>
+                            <td>Lines Cleared</td>
+                            <td>Level Reached</td>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardTableBody">
+                        <!-- Will be filled with content! -->
+                    </tbody>
+                </table>
+
+                <!-- Leaderboard footer, displaying information -->
+                <p id="leaderboardFooter" class="menu-title">That's the end of the leaderboard!</p>
+
+                <!-- Button that shows a menu to delete scores -->
+                <button onclick="elementStatus('leaderboardDelete', 'show')" class="leaderboard-button">Messed up or don't want anyone seeing your score?</button>
+            </div>
+            
+            
+            <!-- The menu to delete content -->
+            <div id="leaderboardDelete" class="menu-bg">
+                <!-- menu content -->
+                <div class="menu-content">
+                    <!-- Close button -->
+                    <button onclick="elementStatus('leaderboardDelete', 'hide')" class="menu-close">
+                        &times;
+                    </button>
+                    <br />
+                    <br />
+                    <h1 class="menu-title">Enter delete name:</h1>
+
+                    <!-- Input box to input delete name -->
+                    <input id="leaderboardDeleteInputBox" class="menu-input menu-input-leaderboard-delete" type="text" placeholder="Your name here..." maxlength="20"></input>
+
+                    <!-- Warning -->
+                    <p class="menu-title leaderboard-delete-text">This process is undoable! Please make sure that you want to delete your score before doing it.</p>
+
+                    <!-- Delete -->
+                    <button onclick="deleteScore(); elementStatus('leaderboardDelete', 'hide')" class="leaderboard-button">Remove</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- A banner to show important information -->
+        <div id="banner" class="banner">
+            <span id="bannerContent"></span>
+        </div>
+
+        <!-- Import libraries -->
+
+        <!-- Array2D to better manipulate 2D arrays -->
+        <script src="Libraries/array2D.js"></script>
+
+        <!-- Rhaboo to make global storage with objects easier -->
+        <script src="Libraries/rhaboo.js"></script>
+
+        <!-- Howler to easily manipulate sounds and music -->
+        <script src="Libraries/howler.js"></script>
+
+        <!-- Script -->
+        <script src="variables.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

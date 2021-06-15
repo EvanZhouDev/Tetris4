@@ -1,0 +1,668 @@
+.canvas {
+    /* No margin */
+    margin: 0;
+
+    /* Fit canvas to entire page */
+    width: 100%;
+    height: 100%;
+
+    /* No scroll */
+    position: fixed;
+
+    /* Start hidden */
+    visibility: hidden;
+    opacity: 0;
+
+    transition: visibility 0.2s, opacity 0.2s ease-in;
+}
+
+/* The Modal (background) */
+.menu-bg {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    /* Keep it at the top left corner */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+
+    /* Start hidden */
+    visibility: hidden;
+    opacity: 0;
+
+    /* Transitions */
+    transition: visibility 0.2s, opacity 0.2s ease-in;
+}
+
+/* Modal Content/Box */
+.menu-content {
+    position: absolute;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #fefefe; /* Changes background color */
+    border-radius: 10px; /* Changes the border radius */
+    /* Centers element*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%; /* Sets width */
+    height: 80%; /* Sets height*/
+    transition: visibility 0.2s, opacity 0.2s ease-in;
+}
+
+.menu-tetris-logo {
+    position: absolute;
+
+    /* Positions element*/
+    left: 50%;
+    top: 18%;
+    width: 80%;
+    height: auto;
+    transform: translate(-50%, -50%);
+}
+
+.menu-title {
+    position: absolute;
+    left: 50%;
+    width: 80%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+
+    /* Sets text */
+    font-family: Roboto;
+    line-height: 35px;
+    font-weight: 400;
+    color: #a3a3a3;
+}
+
+.menu-title-game-over {
+    top: 10%;
+}
+
+.menu-title-score {
+    top: 33%;
+}
+
+.menu-button-label {
+    /* position: absolute; */
+    display: inline;
+
+    /* Sets text */
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    margin: 0 10px;
+    float: right;
+}
+
+.menu-button {
+    /* Sets border */
+    border-color: #a3a3a3;
+    border-style: solid;
+    border-width: 5px;
+
+    /* Sets text */
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+
+    /* Positions element */
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* Sizes Element */
+    width: 90%;
+    height: 100px;
+    font-size: 20px;
+    border-radius: 10px;
+
+    background: none; /* No background */
+    transition: all 0.2s ease-in; /* Transitions */
+}
+
+.menu-button:active {
+    transition-duration: 0.1s; /* Sets transition duration */
+}
+
+.round-button {
+    /* Positions element */
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+    /* Sizes content */
+    height: 6.2vw;
+    width: 6.2vw;
+    border-radius: 50%;
+
+    /* Sets border */
+    border-color: #a3a3a3;
+    border-style: solid;
+    border-width: 5px;
+
+    /* Sets text */
+    font-size: 20px;
+    text-align: center;
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+
+    background: none; /* No background */
+    transition: background-color 0.2s, border-color 0.2s ease-in; /* Transitions */
+}
+
+.round-button:active {
+    transition-duration: 0.1s; /* Sets transition duration */
+}
+
+.menu-button1 {
+    top: 42.5%; /* Positions element */
+}
+
+.menu-button1:hover {
+    border-color: #ffa8a8; /* Hover border color */
+}
+
+.menu-button1:active {
+    border-color: #ffa8a8; /* Hover border color */
+    background-color: #ff4e4e; /* Button pressed background color */
+    color: white; /* Button pressed text color */
+}
+
+.menu-button2 {
+    top: 62.5%; /* Positions element */
+}
+
+.menu-button2:hover {
+    border-color: #c99eff; /* Hover border color */
+}
+
+.menu-button2:active {
+    border-color: #c99eff; /* Hover border color */
+    background-color: #9c4eff; /* Button pressed background color */
+    color: white; /* Button pressed text color */
+}
+
+.menu-button3 {
+    /* Positions element */
+    left: 17.5%;
+    top: 82.5%;
+}
+
+.menu-button3:hover {
+    border-color: #fece54; /* Hover border color */
+}
+
+.menu-button3:active {
+    border-color: #fece54; /* Hover border color */
+    background-color: #fcbf24; /* Button pressed background color */
+    color: white; /* Button pressed text color */
+}
+
+.menu-button4 {
+    /* Positions element */
+    left: 50%;
+    top: 86%;
+}
+
+.menu-button4:hover {
+    border-color: #98feaf; /* Hover border color */
+}
+
+.menu-button4:active {
+    border-color: #98feaf; /* Hover border color */
+    background-color: #4eff75; /* Button pressed background color */
+    color: white; /* Button pressed text color */
+}
+
+.menu-button5 {
+    /* Positions element */
+    left: 82.5%;
+    top: 82.5%;
+}
+
+.menu-button5:hover {
+    border-color: #a5adff; /* Hover border color */
+}
+
+.menu-button5:active {
+    border-color: #a5adff; /* Hover border color */
+    background-color: #4e5fff; /* Button pressed background color */
+    color: white; /* Button pressed text color */
+}
+
+.switch-group {
+    /* Positions element */
+    margin-top: 10px;
+    width: 100%;
+}
+
+.switch {
+    /* Positions element */
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-left: 10px;
+}
+
+.switch input {
+    /* Hides input checkbox box */
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    /* Positions element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    /* Sets pointer because real input box is separate */
+    cursor: pointer;
+
+    /* Sets background */
+    background-color: #ccc;
+
+    /* Sets Transitions */
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+
+    /* Border radius */
+    border-radius: 34px;
+}
+
+.slider:before {
+    /* Positions element */
+    position: absolute;
+    left: 4px;
+    bottom: 4px;
+
+    /* Sizes element */
+    height: 26px;
+    width: 26px;
+
+    content: ""; /* No content */
+
+    background-color: white; /* Background color */
+
+    /* Transitions */
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+
+    border-radius: 50%; /* Border radius */
+}
+
+input:checked + .slider {
+    /* Slider color */
+    background-color: #2196f3;
+}
+
+input:checked + .slider:before {
+    /* Sliding animation */
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.menu-close {
+    position: fixed;
+    z-index: 999999999;
+    background: none; /* No background */
+    border: none; /* No border */
+    right: 0;
+
+    /* Font */
+    font-size: 25px;
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    transition: all 0.2s ease-in;
+}
+
+.menu-close:hover {
+    color: #8a8a8a;
+}
+
+.menu-close:active {
+    color: #636363;
+}
+
+.main-logo {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 5%;
+    height: 50%;
+}
+
+.main-text {
+    display: inline-block;
+    /* Sets text */
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    font-size: 100px;
+    width: 250px;
+    margin: 0px;
+}
+
+.main-logo > span {
+    display: table;
+    width: 400px;
+    margin: auto;
+}
+
+.main-image {
+    float: right;
+}
+
+.sub-main-text {
+    /* position: relative; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 2px;
+    /* Sets text */
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    font-size: 38px;
+}
+
+.main-button {
+    /* Sets border */
+    border-color: #a3a3a3;
+    border-style: solid;
+    border-width: 5px;
+
+    /* Sets text */
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+
+    /* Positions element */
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* Sizes Element */
+    width: 35%;
+    height: 100px;
+    font-size: 20px;
+    border-radius: 10px;
+
+    background: none; /* No background */
+    transition: all 0.2s ease-in; /* Transitions */
+}
+
+.main-button:active {
+    transition-duration: 0.1s; /* Sets transition duration */
+}
+
+.main-button1 {
+    top: 40%;
+}
+
+.main-button2 {
+    top: 60%;
+}
+
+.main-button1:hover {
+    border-color: #ffa8a8; /* Hover border color */
+}
+
+.main-button1:active {
+    border-color: #ffa8a8; /* Hover border color */
+    background-color: #ff4e4e; /* Button pressed background color */
+    color: white; /* Button pressed text color */
+}
+
+.main-button2:hover {
+    border-color: #c99eff; /* Hover border color */
+}
+
+.main-button2:active {
+    border-color: #c99eff; /* Hover border color */
+    background-color: #9c4eff; /* Button pressed background color */
+    color: white; /* Button pressed text color */
+}
+
+.main-notice {
+    background: 0;
+    border: 0;
+    position: absolute;
+    bottom: 0%;
+    width: 40%;
+    left: 50%;
+    text-align: center;
+    /* Sets text */
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 15px;
+    color: #a3a3a3;
+    transform: translate(-50%, -50%);
+}
+
+.banner {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -130%);
+    top: 0;
+    background: white;
+    filter: drop-shadow(0 0 0.3rem #a3a3a3);
+    height: 5%;
+    width: 60%;
+    border-radius: 10px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    /* Sets text */
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    font-size: 15px;
+    transition: transform 0.1s ease-in;
+    z-index: 1;
+}
+
+.banner > span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.main-menu-settings-button {
+    background: 0;
+    border: none;
+    /* Sets text */
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    font-size: 20px;
+    transition: all 0.2s ease-in;
+}
+
+.main-menu-settings-button:hover {
+    color: #8a8a8a;
+}
+
+.main-menu-settings-button:active {
+    color: #636363;
+}
+
+.large-menu-content {
+    width: 90%;
+    height: 85%;
+}
+
+.sub-menu-1 {
+    height: 100%;
+    position: absolute;
+    background-color: white;
+    left: 0;
+    transform: translate(0%, -50%);
+    width: 68%;
+    border-radius: 0%;
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
+
+.sub-menu-2 {
+    position: absolute;
+    background-color: #e8e8e8;
+    left: 100%;
+    right: 0;
+    transform: translate(-100%, -50%);
+    height: 100.05%;
+    width: 33%;
+    border-radius: 0%;
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+.menu-header {
+    /* Sets text */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 20px;
+    padding-left: 20px;
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    font-size: 50px;
+    transition: all 0.2s ease-in;
+    margin-bottom: 10px;
+}
+
+.menu-text {
+    /* Sets text */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    font-size: 40px;
+    transition: all 0.2s ease-in;
+}
+
+.menu-text-small {
+    font-size: 20px;
+}
+
+.fill-background {
+    background-color: #e8e8e8;
+}
+
+.leaderboard-table {
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    font-size: 20px;
+    width: 100%;
+}
+
+.leaderboard-table > thead {
+    text-align: center;
+}
+
+.leaderboard-table > thead > tr > th {
+    font-weight: normal;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 10px;
+    /* Apply cell padding */
+}
+
+.leaderboard-table tbody tr:nth-child(odd) > td:nth-child(odd) {
+    background: #e0e0e0;
+}
+
+.leaderboard-table tbody tr:nth-child(odd) > td:nth-child(even) {
+    background: #dbdbdb;
+}
+
+.leaderboard-table tbody tr:nth-child(even) > td:nth-child(odd) {
+    background: #dbdbdb;
+}
+
+.leaderboard-table tbody tr:nth-child(even) > td:nth-child(even) {
+    background: #e0e0e0;
+}
+
+.menu-input {
+    width: 80%;
+    height: 5%;
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    font-size: 20px;
+    margin-left: 20px;
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+}
+
+.menu-input::placeholder {
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    font-size: 20px;
+}
+
+.leaderboard-button {
+    display: absolute;
+    /* Positions element */
+    bottom: 0px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Roboto;
+    font-weight: 400;
+    color: #a3a3a3;
+    background: none;
+    font-size: 20px;
+    width: 80%;
+    height: 8%;
+    border-style: solid;
+    border-color: #a3a3a3;
+    border-width: 5px;
+    border-radius: 10px;
+    transition: all 0.2s ease-in;
+}
+
+.leaderboard-button:hover {
+    color: #8a8a8a;
+    border-color: #8a8a8a;
+}
+
+.leaderboard-button:active {
+    color: #636363;
+    border-color: #636363;
+}
+
+.menu-input-leaderboard-delete {
+    position: absolute;
+    top: 20%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #a3a3a3;
+}
+
+.leaderboard-delete-text {
+    bottom: 120px;
+}
