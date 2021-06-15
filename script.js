@@ -828,7 +828,7 @@ musicSwitch.addEventListener("change", function () {
         }
 
         // Fade from 0 volume to 0.5 volume for a cool effect
-        tetrisTheme.fade(0, 0.5, 5000);
+        tetrisTheme.fade(0, 0.5, 3000);
     } else if (!musicSwitch.checked) {
         // Otherwise, if music switch got turned off
         // Turn music off
@@ -852,7 +852,7 @@ let newGame = (deleteSavedGameParam) => {
         }
         // And fade to full volume if not already at full volume
         if (!(tetrisTheme.volume() == 0.5)) {
-            tetrisTheme.fade(tetrisTheme.volume(), 0.5, 5000);
+            tetrisTheme.fade(tetrisTheme.volume(), 0.5, 3000);
         }
     }
 
@@ -892,7 +892,7 @@ let quit = (save = false) => {
     }
 
     // Fade the Tetris music
-    tetrisTheme.fade(tetrisTheme.volume(), 0, 5000);
+    tetrisTheme.fade(tetrisTheme.volume(), 0, 3000);
 
     // Set a timeout for 5 seconds (the amount of time it takes to fade the music)
     window.setTimeout(() => {
@@ -903,7 +903,7 @@ let quit = (save = false) => {
             // Then stop the music
             tetrisTheme.stop();
         }
-    }, 5000);
+    }, 3000);
 
     // If deleteSavedGame (a flag to delete a game that is got from global storage quit without save is pressed in order to not allow time travel) is true
     if (deleteSavedGame) {
