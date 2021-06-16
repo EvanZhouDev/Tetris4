@@ -1,6 +1,16 @@
 # Tetris4
 A JS Tetris Game
 
+## What is Tetris?
+View this link below if you do not know the basic rules of Tetris, or would like some history.  <br/><br/>
+[What is Tetris?](https://tetris.com/about-us)<br/><br/>
+
+## Scoring System of Tetris 4
+*If you clear one line:* **You get 100 points** <br/>
+*If you clear two lines:* **You get 300 points** <br/>
+*If you clear three lines:* **You get 500 points** <br/>
+*If you clear four lines (better known as a "Tetris line clear"):* **You get 800 points** <br/><br/>
+
 ## Starting a Game
 Click the play button. It's as simple as that. If there is an active game that was previously saved, then there will be a choice to open a new game, or continue that game. Otherwise, it will create a new game for you and skip the popup.
 
